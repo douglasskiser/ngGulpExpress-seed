@@ -1,0 +1,22 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<header class="jumbotron" id="banner">
+	<h1>Hello!</h1>
+	<p class="lead">
+		Hit the ground running with ngGulp.
+	</p>
+</header>
+<div class="container">
+	<h2 class="page-title">Features</h2>
+	<ul class="list-group col-md-8 col-md-offset-2">
+		<li class="list-group-item" ng-repeat="item in features">
+			{{item.name}}
+		</li>
+	</ul>
+</div>
+<footer>
+	<div class="container">
+		<p>
+			Developed with &hearts; by Douglass Kiser
+		</p>
+	</div>
+</footer>

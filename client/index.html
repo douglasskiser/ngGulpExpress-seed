@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>ngGulp Seed</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- build:css -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="app/app.css" rel="stylesheet">
+    <link href="app/main/main.css" rel="stylesheet">
+    <link href="components/navbar/navbar.css" rel="stylesheet">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="app">
+
+    <div ui-view=""></div>
+    
+    <!-- build:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="app/app.js"></script>
+    <script src="templates.js"></script>
+    <script src="app/main/main.js"></script>
+    <script src="app/main/main.controller.js"></script>
+    <script src="components/navbar/navbar.controller.js"></script>
+    <script src="components/features/features.service.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
