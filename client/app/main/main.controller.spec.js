@@ -1,31 +1,34 @@
 'use strict';
 
 describe("Controller: MainCtrl", function() {
-	var scope, $httpBackend, MainCtrl;
+	var scope, featuresService, MainCtrl;
 
 	beforeEach(module('app'));
 
-	beforeEach(inject(function(_$httpBackend_, $controller, $rootScope) {
-		$httpBackend = _$httpBackend_;
-		$httpBackend.when('GET', '/api/features')
-			.respond([
-				{ name: 'AngularJS' },
-				{ name: 'Bootstrap' },
-				{ name: 'UI Bootstrap' },
-				{ name: 'UI Router' },
-				{ name: 'Karma' }
-			]);
+	beforeEach(inject(function($controller, $rootScope) {
+		featuresService = {
+			query: function() {}
+		};
+
+		spyOn(featuresService, 'query').andReturn('featuresServiceQuery');
 
 		scope = $rootScope.$new();
+
 		MainCtrl = $controller('MainCtrl', {
-			$scope: scope
+			$scope: scope,
+			featuresService: featuresService
 		});
 	}));
 
-	it('should attach a list of features to the scope', function() {
-		$httpBackend.expectGET('/api/features');
-		$httpBackend.flush();
-		expect(scope.features.length).toBe(5);
-		expect(scope.features[0].name).toBe('AngularJS');
+	it('should be defined', function() {
+		expect(MainCtrl).toBeDefined();
+	});
+
+	it('should have features scope variable', function() {
+		expect(scope.features).toBeDefined();
+	});
+
+	it('should set features to query featuresService', function() {
+		expect(scope.features).toBe('featuresServiceQuery');
 	});
 });

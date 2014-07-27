@@ -42,20 +42,9 @@ function karmaTest(cb) {
  * @return {Function}
  */
 function mochaTest() {
-    gulp.src(config.paths.serverSpecs)
+    return gulp.src(config.paths.serverSpecs)
         .pipe(plugins.mocha({reporter: 'progress'}));
 
-}
-/**
- * testAll
- * runs all tests
- * @param  {Function} cb
- * @return {Function}
- */
-function testAll(cb) {
-    return mochaTest(function() {
-        return karmaTest(cb);
-    });
 }
 /** 
  * clientCSS
@@ -133,7 +122,10 @@ function clientImages() {
 function clientIndex() {
     return gulp.src(config.paths.index)
         .pipe(plugins.angularHtmlify())
-        .pipe(plugins.htmlReplace({ js: ['app/lib.js', 'app/app.js', 'app/templates.js'], css: ['app/lib.css', 'app/app.css']}))
+        .pipe(plugins.htmlReplace({
+            js: ['app/lib.js', 'app/app.js', 'app/templates.js'],
+            css: ['app/lib.css', 'app/app.css']
+        }))
         .pipe(gulp.dest(config.paths.distPublic));
 }
 /**
@@ -221,7 +213,7 @@ return [
     { name: 'clean',  task: clean },
     { name: 'mocha', task: mochaTest },
     { name: 'karma', task: karmaTest},
-    { name: 'test', task: testAll },
+    { name: 'test', deps: ['karma', 'mocha'], task: null },
     { name: 'clientCSS', task: clientCSS },
     { name: 'clientJS',  task: clientJS },
     { name: 'lintClientJS', task: lintClientJS },
